@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      const msg = "안녕하세요";
+      const name = "홍길동";
+
+      console.log(msg);
+      console.log(name);
+      console.log("님");
+
+      console.log(msg + name + "님");
+      //+: 변수를 문자로 변환 후 출력
+
+      console.log(msg, name, "님");
+
+      console.log(`${msg} ${name}님`);
+      // 백틱 : ( `) 문자를 쓰다가 변수를 쓸 수 있어요
+
+      console.log("----");
+      let colors = ["red", "orange", "yellow", "green"];
+      console.log(colors);
+      // 색상 : Array
+      console.log("색상 :" + colors);
+      console.log('색상 : ", colors');
+      console.log(`색상 : ${colors}`);
+
+      let list = [1, 2, 3, 4, 5, 6];
+      console.log(list[1]);
+      console.log(list.length);
+
+      list.push(7);
+      console.log(list);
+
+      list.pop();
+      console.log(list);
+
+      let color = [
+        "pink",
+        "blue",
+        "purple",
+        "brown",
+        "navy",
+        "gold",
+        "skyblue",
+      ];
+      console.log(color);
+      console.log(color[1]);
+      color.push("yellow");
+      console.log(color);
+      console.log(color.indexOf("yellow"));
+      console.log(color.reverse());
+
+      const A = "안녕";
+      console.log(`${typeof 1} isn't ${typeof A} data type`);
+
+      console.log(
+        `Typeof를 boolean이나 null에 사용하면, ${typeof null} 결과를 얻을 수 있습니다`
+      );
+
+      //   let a = "1";
+      //   let b = 10;
+
+      //   console.log(a + b);
+
+      //   let mathScore = prompt("수학 점수를 입력 하세요");
+      //   let engScore = prompt("영어 점수를 입력하세요");
+
+      //   let avg = (mathScore + engScore) / 2;
+      //   console.log(avg);
+      //
+
+      //   console.log("형변환");
+      //   let num = 456;
+      //   console.log(typeof num); //number
+      //   let num1 = String(num);
+      //   console.log(typeof num1); //string
+      //   let num2 = num.toString();
+      //   console.log(typeof num); //string
+
+      //   console.log(typeof num);
+
+      let mathScore = "77";
+      let engScore = "88";
+      let avg = (Number(mathScore) + Number(engScore)) / 2;
+      console.log(avg);
+
+      console.log(1 === "1");
+    </script>
+  </head>
+  <body></body>
+</html>

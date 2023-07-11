@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //   function test() {
+      //     alert("클릭했습니다");
+      //   }
+
+      //   function test2(obj) {
+      //     console.log(obj);
+      //     console.log(obj.value);
+      //   }
+
+      // 전역변수랑 지역변수
+      let a = prompt("첫번째 숫자");
+      a = Number(a);
+      let b = prompt("두번째 숫자");
+      b = Number(b);
+
+      function add() {
+        let result = a + b;
+        alert(result);
+      }
+      function sub() {
+        alert(a - b);
+      }
+
+      function div() {
+        alert(a / b);
+      }
+
+      function mul() {
+        alert(a * b);
+      }
+    </script>
+    </script>
+  </head>
+  <body>
+    <!-- <button onclick="test()">버튼</button>
+    <div style="background-color: yellow" onclick="test()">안녕</div>
+    <input type="text" value="asghjd" onkeyup="test2()" /> -->
+
+    <button onclick="add()">add</button>
+    <button onclick="sub()">sub</button>
+    <button onclick="div()">div</button>
+    <button onclick="mul()">mul</button>
+  
+  </body>
+  
+</html>
