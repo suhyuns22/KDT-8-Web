@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      //if(조건1) {//조건1이 팜일 때 실행할 코드}
+      //else if (조건2){//조건2가 팜일 때 실행할 코드}
+      //else {위의 모든 조건들이 부합하지 않을 떄 실행할 코드}
+
+      //   if (3 > 5) {
+      //     console.log("3>5");
+      //   }
+      //   if (3 < 5) {
+      //     console.log("3<5");
+      //   }
+
+      let a = prompt("나이");
+      a = Number(a);
+      let b = prompt("성별");
+
+      if (20 <= a) {
+        console.log("성인");
+      } else if (a >= 17) {
+        console.log("고등학생");
+      } else if (a >= 14) {
+        console.log("중학생");
+      } else if (a >= 8) {
+        console.log("초등학생");
+      } else if (a >= 0) {
+        console.log("유아");
+      }
+
+      switch (test) {
+        case "a":
+          console.log("a입니다");
+          break;
+        case "b":
+          console.log("b입니다");
+          break;
+        default:
+          console.log("a 와 b가 모두 아닙니다");
+      }
+
+      if (a > 5) {
+        console.log("5보다 크다");
+      } else {
+        console.log("5보다작다");
+      }
+
+      a > 5 ? console.log("5보다크다") : console.log("5보다 작다");
+
+      let now = new Date().getHours();
+      if (now === 12) {
+        console.log(정오);
+      } else {
+        console.log(자정);
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
