@@ -11,6 +11,7 @@ app.get("/", (req, res) => {
   res.render("practice2");
 });
 
+<a href="/ghi">도메인3</a>;
 app.use("/public", express.static("./public"));
 
 app.listen(PORT, () => {

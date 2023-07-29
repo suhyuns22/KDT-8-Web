@@ -14,6 +14,10 @@ app.get("/", (req, res) => {
   res.render("practice4");
 });
 
+app.get("/abc", (req, res) => {
+  res.render("practice");
+});
+
 //서버를 열어주는 역할 : listen
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

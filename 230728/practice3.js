@@ -11,6 +11,10 @@ app.get("/", (req, res) => {
   res.render("practice3", { data: 2 });
 });
 
+app.get("/def", (req, res) => {
+  res.render("practice");
+});
+
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });
