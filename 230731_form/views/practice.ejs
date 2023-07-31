@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1><%=title%></h1>
+    <br />
+
+    <form action="/getForm" method="get">
+      <div><span>이름</span><input type="text" name="name" required /></div>
+      <br />
+      <fieldset>
+        <legend>성별</legend>
+        <span>남자</span><input type="radio" name="gender" required />
+        <span>여자</span><input type="radio" name="gender" required />
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="yaer" id="year">
+          <option>2020</option>
+          <option>2021</option>
+          <option>2022</option>
+          <option>2023</option>
+        </select>
+        <span>년</span>
+        <select name="month" id="month">
+          <option>01</option>
+          <option>02</option>
+          <option>03</option>
+          <option>04</option>
+          <option>05</option>
+          <option>06</option>
+          <option>07</option>
+          <option>08</option>
+          <option>09</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+        </select>
+        <span>월</span>
+        <select name="date" id="date">
+          <option>01</option>
+          <option>02</option>
+          <option>03</option>
+          <option>04</option>
+          <option>05</option>
+          <option>06</option>
+          <option>07</option>
+          <option>08</option>
+          <option>09</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+          <option>13</option>
+          <option>14</option>
+          <option>15</option>
+          <option>16</option>
+          <option>17</option>
+          <option>18</option>
+          <option>19</option>
+          <option>20</option>
+          <option>21</option>
+          <option>22</option>
+          <option>23</option>
+          <option>24</option>
+        </select>
+        <span>일</span>
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>관심사</legend>
+        <span>여행</span><input type="checkbox" /> <span>패션</span
+        ><input type="checkbox" /> <span>음식</span><input type="checkbox" />
+      </fieldset>
+      <br />
+      <button type="submit">회원가입</button>
+    </form>
+  </body>
+</html>
