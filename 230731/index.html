@@ -49,9 +49,11 @@
       //예시
       //   const Person = [{}, {}, {}];
 
+      const city = "";
+
       //객체구조분해
-      const { name, city, gender, key1 = "HI" } = Person;
-      console.log(name, city, gender, key1);
+      const { name, city: newCity, gender, key1 = "HI" } = Person;
+      console.log(name, city, gender, key1, newCity);
     </script>
   </body>
 </html>

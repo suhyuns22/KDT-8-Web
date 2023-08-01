@@ -11,7 +11,6 @@ app.set("views", "./views");
 
 //router
 app.get("/", (req, res) => {
-  //   res.send("Hello");
   res.render("practice", { title: "실습01. GET으로 정보받기" });
 });
 
@@ -35,6 +34,7 @@ app.put("/", (req, res) => {
   console.log(req.body);
 });
 
+//서버오픈
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });
