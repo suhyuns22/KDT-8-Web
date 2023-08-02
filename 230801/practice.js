@@ -18,6 +18,10 @@ app.get("/axios", (req, res) => {
   res.send(req.query);
 });
 
+app.post("/resultPost", (req, res) => {
+  console.log(req.body);
+});
+
 //서버오픈
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
