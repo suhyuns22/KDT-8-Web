@@ -35,5 +35,5 @@ app.get("/distroy", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("ddd");
+  console.log(`http://localhost:${PORT}`);
 });

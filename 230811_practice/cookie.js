@@ -5,33 +5,24 @@ const PORT = 8000;
 
 app.set("view engine", "ejs");
 
-app.use(cookieParser("1234"));
+app.use(cookieParser());
 
 const cookieConfig = {
   httpOnly: true,
   maxAge: 60 * 1000,
-  signed: true,
 };
 
 app.get("/", (req, res) => {
-  res.render("index");
+  console.log(req.cookies);
+  res.render("index", { popup: req.cookies.modal });
 });
 
-app.get("/setCookie", (req, res) => {
-  res.cookie("myCookie", "myValue", cookieConfig);
-  res.send("set cookie");
+app.post("/setCookie", (req, res) => {
+  //쿠키생성
+  res.cookie("modal", "hide", cookieConfig);
+  res.send({ result: true, msg: "쿠키 생성 완료" });
 });
 
-app.get("/getCookie", (req, res) => {
-  res.send(req.signedCookies);
-});
-
-app.get("/clearCookie", (req, res) => {
-  res.clearCookie("myCookie");
-  res.send("clearCookie");
-});
-
-// 서버 시작 시 모달 열기
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });

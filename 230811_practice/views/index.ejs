@@ -3,65 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Bootstrap CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <title>Your Page Title</title>
-
-    <!-- Bootstrap JavaScript (bundle) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- 클라이언트 측 JavaScript -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const myModal = new bootstrap.Modal(document.getElementById("myModal"));
-      });
-
-      document
-        .querySelector(".btn-primary")
-        .addEventListener("click", function () {
-          myModal.show();
-        });
-
-      // 모달이 닫힐 때 오늘 그만 보기 기능 활성화
-      myModal._element.addEventListener("hidden.bs.modal", function () {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        document.cookie =
-          "hideModal=true; expires=" + today.toUTCString() + "; path=/";
-      });
-
-      // 오늘 그만 보기 쿠키가 있으면 모달 표시하지 않음
-      if (document.cookie.indexOf("hideModal=true") !== -1) {
-        return;
-      }
-    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+      crossorigin="anonymous"
+    ></script>
+    <title>Cookie 실습</title>
   </head>
   <body>
-    <!-- 모달 -->
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#myModal"
-    >
-      모달 열기
-    </button>
+    <h1>실습1</h1>
+
+    <!-- Modal -->
     <div
       class="modal fade"
-      id="myModal"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
       tabindex="-1"
-      aria-labelledby="myModalLabel"
+      aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="myModalLabel">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
               인터넷익스플로러 지원 종료 안내
-            </h5>
+            </h1>
             <button
               type="button"
               class="btn-close"
@@ -70,19 +43,44 @@
             ></button>
           </div>
           <div class="modal-body">
-            인터넷익스플로러 서비스 지원이 2022년 6월 15일 종료됩니다.
+            인터넷 익스플로러 서비스 지원이 2022년 6월 15일 종료됩니다.
           </div>
           <div class="modal-footer">
+            <input type="checkbox" id="cookie" />
+            <label for="cookie">오늘하루보지않음</label>
             <button
               type="button"
               class="btn btn-secondary"
               data-bs-dismiss="modal"
+              onclick="closeModal()"
             >
-              오늘 그만보기
+              Close
             </button>
           </div>
         </div>
       </div>
     </div>
+
+    <script>
+      const modal = new bootstrap.Modal("#staticBackdrop");
+      //show(): 수동으로 모달을 열어줌
+      console.log("<%= popup %>");
+
+      if ("<%= popup %>" === "") {
+        modal.show();
+      }
+
+      function closeModal() {
+        console.log("close modal");
+        if (document.getElementById("cookie").checked) {
+          axios({
+            method: "POST",
+            url: "/setCookie",
+          }).then((res) => {
+            console.log("res", res.data);
+          });
+        }
+      }
+    </script>
   </body>
 </html>
