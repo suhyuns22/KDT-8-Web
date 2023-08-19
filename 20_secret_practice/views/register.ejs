@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>회원가입</title>
+  </head>
+  <body>
+    <h1>회원가입</h1>
+    <form name="register">
+      <input type="text" name="userid" id="userid" placeholder="id" />
+      <br /><br />
+      <input type="password" id="pw" placeholder="pw" /><br /><br />
+      <input type="text" id="name" placeholder="name" /><br /><br />
+      <button type="button" onclick="registerFunc()">회원가입</button>
+    </form>
+
+    <script>
+      async function registerFunc() {
+        const userid = document.getElementById("userid").value;
+        const pw = document.getElementById("pw").value;
+        const name = document.getElementById("name").value;
+        const data = {
+          userid: userid,
+          pw: pw,
+          name: name,
+        };
+
+        const result = await axios({
+          url: "/register",
+          method: "POST",
+          data,
+        });
+        if (result.data.result) {
+          document.location.href = "/login";
+        }
+      }
+    </script>
+  </body>
+</html>

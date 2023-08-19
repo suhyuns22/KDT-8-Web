@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>파일업로드</title>
+  </head>
+  <body>
+    <h1>파일 업로드 하기</h1>
+
+    <!-- 일반 폼 전송 -->
+    <h2>하나의 input에 하나의 파일 업로</h2>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="userfile" /> <br />
+      <input type="text" name="title" /><br />
+      <button type="submit">업로드</button>
+    </form>
+
+    <!-- 파일 여러개 업로드 ver1 -->
+    <h2>Multi file upload (ver1)</h2>
+    <p>하나의 input에 여러 개 파일 업로드하기</p>
+    <form action="/upload/array" method="post" enctype="multipart/form-data">
+      <input type="file" name="userfiles" multiple /> <br />
+      <input type="text" name="title" /> <br />
+      <button type="submit">업로드</button>
+    </form>
+
+    <!-- 파일 여러개 업로드 ver2 -->
+    <h2>Multi file upload (ver2)</h2>
+    <p>여러개의 input에 각각 파일 업로드하기</p>
+    <form action="/upload/fields" method="post" enctype="multipart/form-data">
+      <input type="file" name="userfile1" /> <br />
+      <input type="text" name="title1" /> <br />
+      <input type="file" name="userfile2" /> <br />
+      <input type="text" name="title2" /> <br />
+      <button type="submit">업로드</button>
+    </form>
+
+    <!-- axios 동적 파일 업로드 -->
+    <h2>동적 파일 업로드</h2>
+
+    <input type="file" name="dynamic-userfile" id="dynamic-file" /> <br />
+    <button type="button" onclick="fileUpload()">업로드</button><br />
+    <img class="img-box" src="" width="200" />
+  </body>
+  <script>
+    //동적파일 업로드
+    function fileUpload() {
+      const formData = new FormData();
+      const fileInput = document.getElementById("dynamic-file");
+      console.log(fileInput.files);
+      formData.append("dynamic-file", fileInput.files[0]);
+
+      axios({
+        method: "POST",
+        url: "/dynamic",
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then((res) => {
+        console.log(res);
+
+        const imgElement = document.querySelector(".img-box");
+        imgElement.src = `/${res.data.path}`;
+      });
+    }
+  </script>
+</html>

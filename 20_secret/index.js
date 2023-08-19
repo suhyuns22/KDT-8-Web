@@ -12,9 +12,9 @@ app.use(express.json());
 
 //router
 app.get("/", (req, res) => {
-  console.log(process.env.NAME);
+  console.log(process.env);
   console.log(process.env.STATUS);
-  console.log(process.env.NOCE_ENV);
+  console.log(process.env.NODE_ENV);
 
   res.render("index");
 });
