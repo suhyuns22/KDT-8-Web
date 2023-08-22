@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원 추가</title>
+  </head>
+  <body>
+    <form action="/add-member" method="POST">
+      <label for="name">이름:</label>
+      <input type="text" id="name" name="name" required />
+      <br />
+      <label for="gender">성별:</label>
+      <input type="text" id="gender" name="gender" required />
+      <br />
+      <label for="major">전공:</label>
+      <input type="text" id="major" name="major" required />
+
+      <button type="submit">회원 추가</button>
+    </form>
+  </body>
+</html>
