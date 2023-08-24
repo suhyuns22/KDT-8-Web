@@ -20,7 +20,6 @@ const profile = (req, res) => {
     res.render("profile", { data: result[0] });
   });
 };
-const buy = () => {};
 
 ////////////////////////////////////////////////
 //POST
