@@ -15,7 +15,7 @@ const mysql = require("mysql");
 //creatpool
 //연결 풀을 생성, 풀은 미리 정의된 수의 연결을 생성하고 관리 요청이 들어오면 연결 풀에서 사용 가능한 연결을 제공. 작업완료 후 해단 연결 반환
 //연결이 필요하지 않을 경우 자동으로 반환. 풀의 연결 수를 제한하고 괸리를 최적화. 다중 연결 서비스 적합
-cost = conn = mysql.createPool({
+const conn = mysql.createPool({
   host: "127.0.0.1",
   user: "kdt",
   password: "12345678!",
@@ -24,25 +24,28 @@ cost = conn = mysql.createPool({
   connectionLimit: 30, //최대 연결 수 (기본 : 10)
 });
 
-//문자열 보간방법 : `INSERT INTO user (userid,pw,name) VALUES('${data.userid}','${data.pw}','${data.name}')`
-//단점 : sql 인젝션 공격 취약, 문자열에 특수문자가 포함될 경우 오류 발생
-//보완 ->Prepared Statement
-//INSERT INTO user (useriid,pw,name)VALUES(?,?,?)
+//문자열 보간방법
+//`INSERT INTO user (userid, pw, name) VALUES ('${data.userid}', '${data.pw}', '${data.name}') `
+//단점
+//1.sql 인젝션 공격 취약
+//2.문자열에 특수문자가 포함될 경우 오류가 발생할수도 있음.
+//Prepared Statement
+//INSERT INTO user (userid, pw, name) VALUES (?, ?, ?)
 
 //회원가입 정보 데이터베이스 저장
 const db_signup = (data, cb) => {
-  //문자열 보간 방법
-  // const query = `INSERT INTO user (userid,pw,name) VALUES('${data.userid}','${data.pw}','${data.name}')`;
+  //문자열 보간방법
+  //const query = `INSERT INTO user (userid, pw, name) VALUES ('${data.userid}', '${data.pw}', '${data.name}') `;
   // conn.query(query, (err, rows) => {
-  //   if (err) {
-  //     console.log(err);
-  //     return;
-  //   }
-  //   console.log("db_signup", rows);
-  //   cb();
+  //     if (err) {
+  //         console.log(err);
+  //         return;
+  //     }
+  //     console.log('db_signup', rows);
+  //     cb();
   // });
-  //Prepared Statement 방법
-  const query = "INSERT INTO user (userid,pw,name) VALUES (?,?,?)";
+  //prepared statement
+  const query = "INSERT INTO user (userid, pw, name) VALUES (?,?,?)";
   conn.query(query, [data.userid, data.pw, data.name], (err, rows) => {
     if (err) {
       console.log(err);
@@ -54,17 +57,22 @@ const db_signup = (data, cb) => {
 };
 
 const db_signin = (data, cb) => {
-  // const query = `SELECT * FROM user WHERE userid = "${data.userid}" AND "pw = ${data.pw}"`;
+  // const query = `SELECT * FROM user WHERE userid='${data.userid}' AND pw='${data.pw}'`;
   // conn.query(query, (err, rows) => {
-  //   if (err) {
-  //     console.log(err);
-  //     return;
-  //   }
-  //   console.log("db_signin", rows);
-  //   cb(rows);
+  //     if (err) {
+  //         console.log(err);
+  //         return;
+  //     }
+  //     console.log('db_signin', rows);
+  //     cb(rows);
+  //     // (rows) => {
+  //     //     if( rows.length > 0) {
+  //     //     res.json({ result: true, data: rows[0] });
+  //     //    }
+  //     // }
   // });
-
-  const query = "SELECT * FROM user WHERE userid = ? AND pw =?";
+  //prepared statement
+  const query = "SELECT * FROM user WHERE userid = ? AND pw = ?";
   conn.query(query, [data.userid, data.pw], (err, rows) => {
     if (err) {
       console.log(err);
@@ -74,35 +82,35 @@ const db_signin = (data, cb) => {
     cb(rows);
   });
 };
-
-const post_profile = async (data) => {
-  try {
-    const query = "SELECT * FROM user1 WHERE userid = ?";
-    const [rows] = await conn.query(query, [data.profile]);
-    return rows;
-  } catch (error) {
-    console.log(error);
-  }
+//사용자 정보 조회
+const db_profile = (data, cb) => {
+  const query = "SELECT * FROM user WHERE id = ?";
+  conn.query(query, [data.init], (err, rows) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log("db_profile", rows);
+    //select문은 배열을 반환
+    cb(rows);
+  });
 };
-
-const edit_profile = async (data) => {
-  try {
-    const query = "UPDATE user1 SET userid= ?, pw = ?, name = ? WHERE id = ?";
-    const [rows] = await conn.query(query, [
-      data.userid,
-      data.pw,
-      data.name,
-      data.id,
-    ]);
-    return rows;
-  } catch (error) {
-    console.log(error);
-  }
+//프로필 수정
+const db_profile_edit = (data, cb) => {
+  const query = "UPDATE user SET userid=?,name=?,pw=? WHERE id=? ";
+  conn.query(query, [data.userid, data.name, data.pw, data.id], (err, rows) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log("db_profile_edit", rows);
+    cb();
+  });
 };
 
 module.exports = {
   db_signup,
   db_signin,
-  post_profile,
-  edit_profile,
+  db_profile,
+  db_profile_edit,
 };
