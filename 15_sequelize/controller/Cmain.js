@@ -1,5 +1,6 @@
 // const model = require('../model/Model');
 const { User } = require("../models");
+const bcrypt = require("bcrypt");
 
 ///////////////////////////////////////
 //GET
@@ -28,27 +29,29 @@ const profile = (req, res) => {
     res.render("profile", { data: result });
   });
 };
+const buy = () => {};
 
 ////////////////////////////////////////////////
 //POST
 //회원가입
-const post_signup = (req, res) => {
+const post_signup = async (req, res) => {
   // model.db_signup(req.body, () => {
   //     res.json({ result: true });
   // });
   const { userid, name, pw } = req.body;
   //create 데이터 생성
   //실습과제 - 비밀번호 암호화하여 저장
+  const hash = await bcryptPassword(pw);
   User.create({
     userid,
     name,
-    pw,
+    pw: hash,
   }).then(() => {
     res.json({ result: true });
   });
 };
 
-const post_signin = (req, res) => {
+const post_signin = async (req, res) => {
   // model.db_signin(req.body, (result) => {
   //     if (result.length > 0) {
   //         res.json({ result: true, data: result[0] });
@@ -57,24 +60,34 @@ const post_signin = (req, res) => {
   //     }
   // });
   //실습과제 - 로그인
-  //step1 아이디를 찾아서 사용자 존재 유/무 체크
-  //step2 입력된 비밀번호 암호화하여 기존 데이터와 비교
   const { userid, pw } = req.body;
-  User.findOne({
+  //step1 아이디를 찾아서 사용자 존재 유/무 체크
+  const user = await User.findOne({
     where: { userid },
-  }).then((user) => {
-    if (user) {
-      if (user.pw === pw) {
-        res.json({ result: true, data: user });
-      } else {
-        res.json({ result: false });
-      }
-    } else {
-      res.json({ result: false });
-    }
   });
-};
+  // const user = {
+  //     id: 1,
+  //     userid: 'asdf',
+  //     name: '홍길동',
+  //     pw: '@@@@@@@@@@'
+  // }
 
+  if (user) {
+    //step2 입력된 비밀번호와 기존 데이터와 비교
+    //사용자가 존재함
+    const result = await compareFunc(pw, user.pw);
+    if (result) {
+      //비밀번호 일치
+      res.json({ result: true, data: user });
+    } else {
+      //비밀번호 틀림
+      res.json({ result: false, message: "비밀번호가 틀렸습니다." });
+    }
+  } else {
+    //사용자가 존재하지 않음
+    res.json({ result: false, message: "존재하는 사용자가 없습니다" });
+  }
+};
 ///////////////////////////////////////////
 //PATCH
 const edit_profile = (req, res) => {
@@ -91,9 +104,12 @@ const edit_profile = (req, res) => {
 /////////////////////////////////////////////
 //DELETE
 //회원탈퇴 destory()
-const delete_profile = (req, res) => {
-  User.delete_profile(req.body.id, () => {
-    res.send({ result: true });
+const destroy = (req, res) => {
+  const { id } = req.body;
+  User.destroy({
+    where: { id },
+  }).then(() => {
+    res.json({ result: true });
   });
 };
 
@@ -102,8 +118,16 @@ module.exports = {
   signup,
   signin,
   profile,
+  buy,
   post_signup,
   post_signin,
   edit_profile,
-  delete_profile,
+  destroy,
 };
+
+///////////////////////////function
+//암호화
+//화살표함수 축약형 {} 삭제, return 삭제 (한줄코드일때사용!!)
+const bcryptPassword = (password) => bcrypt.hash(password, 11);
+//비교
+const compareFunc = (password, dbpass) => bcrypt.compare(password, dbpass);

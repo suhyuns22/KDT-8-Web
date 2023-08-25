@@ -18,7 +18,7 @@ router.post("/signin", controller.post_signin); //로그인하기
 router.get("/profile/:init", controller.profile);
 //수정
 router.patch("/profile/edit", controller.edit_profile);
-//삭제
-router.delete("/profile/delete", controller.delete_profile);
+//회원탈퇴
+router.delete("/destroy", controller.destroy);
 
 module.exports = router;
