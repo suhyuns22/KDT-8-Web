@@ -2,13 +2,24 @@
 const { User } = require("../models");
 const bcrypt = require("bcrypt");
 
+//쿠키설정
+const cookieConfig = {
+  httpOnly: true,
+  maxAge: 60 * 1000,
+};
+
 ///////////////////////////////////////
 //GET
 const main = (req, res) => {
+  //쿠키사용
+  console.log("cookie", req.cookie);
   res.render("index");
 };
 //회원가입 페이지
 const signup = (req, res) => {
+  //쿠키생성
+  //res.cookie(쿠키이름, 쿠키값, 옵션객체)
+  res.cookie("testCookie", "test", cookieConfig);
   res.render("signup");
 };
 //로그인 페이지
@@ -18,6 +29,7 @@ const signin = (req, res) => {
 //회원정보 조회 페이지
 const profile = (req, res) => {
   console.log(req.params);
+  console.log(req.session.name, req.sessionID);
   // model.db_profile(req.params, (result) => {
   //     res.render('profile', { data: result[0] });
   // });
@@ -78,6 +90,7 @@ const post_signin = async (req, res) => {
     const result = await compareFunc(pw, user.pw);
     if (result) {
       //비밀번호 일치
+      req.session.name = user.name;
       res.json({ result: true, data: user });
     } else {
       //비밀번호 틀림
