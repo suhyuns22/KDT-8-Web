@@ -1,16 +1,14 @@
+const http = require("http");
 const ws = require("ws");
 const express = require("express");
 const app = express();
+const server = http.createServer(app);
 const PORT = 8000;
 
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
   res.render("client");
-});
-
-const server = app.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}`);
 });
 
 //웹소켓 서버 접속
@@ -26,12 +24,13 @@ wss.on("connection", (socket) => {
   sockets.push(socket);
 
   socket.on("message", (message) => {
+    //웹소켓을 통해 클라이언트와 서간의 데이터를 주고받을 때는 일반적으로 문자열 또는 버퍼형태로 전달됨
     //msg: {name : 'any', messageL 'any'}
     const msg = JSON.parse(message);
     console.log(`클라이언트로부터 받은 메세지 : ${msg.message}`);
     //클라이언트로 응답 메세지 전송
     //socket.send(`서버메세지 : ${message}`);
-    sockets.forEach((elem) => {
+    wss.clients.forEach((elem) => {
       elem.send(`${msg.user} : ${msg.message}`);
     });
   });
@@ -45,4 +44,8 @@ wss.on("connection", (socket) => {
   socket.on("close", () => {
     console.log("클라이언트와 연결이 종료되었습니다.");
   });
+});
+
+server.listen(PORT, () => {
+  console.log(`http://localhost:${PORT}`);
 });
