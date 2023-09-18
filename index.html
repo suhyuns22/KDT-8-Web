@@ -4,16 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .icon-logo .path1:before {
+        content: "\e900";
+        color: #8783f5;
+      }
+      .icon-logo .path2:before {
+        content: "\e901";
+        color: #35d2bf;
+        margin-left: -1.01953125em;
+      }
+      .icon-logo .path3:before {
+        content: "\e902";
+        color: #fff;
+        margin-left: -1.01953125em;
+      }
+    </style>
   </head>
   <body>
-    <script>
-      //즉시실행
-      (function () {
-        localStorage.setItem("id", "kdt8");
-        const local = localStorage.getItem("id");
-        console.log(local);
-        localStorage.clear();
-      })();
-    </script>
+    <span class="icon-logo"
+      ><span class="path1"></span><span class="path2"></span
+      ><span class="path3"></span
+    ></span>
   </body>
 </html>
