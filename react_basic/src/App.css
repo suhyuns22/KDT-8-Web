@@ -1,0 +1,97 @@
+/* 연습1 */
+.parent {
+  position: relative;
+}
+
+.eye {
+  bottom: 300px;
+}
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+}
+.eye1 {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: white;
+  bottom: 115px;
+  right: 276px;
+}
+.eye2 {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: rgb(0, 0, 0);
+  bottom: 124px;
+  right: 293px;
+}
+
+.circle1 {
+  background-color: #9ab5ff;
+  position: absolute;
+  top: 400px;
+  left: 230px;
+  z-index: 10;
+}
+.circle2 {
+  background-color: #84ff8d;
+  top: 405px;
+  left: 190px;
+  z-index: 8;
+}
+.circle3 {
+  background-color: #ffeb88;
+  bottom: 179px;
+  top: 400px;
+  left: 140px;
+  z-index: 7;
+}
+
+.circle4 {
+  background-color: #ffb680;
+  bottom: 1%;
+  top: 396px;
+  left: 70px;
+
+  z-index: 6;
+}
+.circle5 {
+  top: 350px;
+  left: 10px;
+  background-color: #ff7c7c;
+}
+/* ------------------------------------ */
+
+/* 연습2 */
+.bookbg {
+  background-color: #f7eec1;
+}
+.bestTitle {
+  color: rgb(255, 111, 0);
+  text-align: center;
+  margin: 24px;
+}
+
+.booktitle {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.bookimg {
+  width: 120px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.booksub {
+  margin-left: 20px;
+}
