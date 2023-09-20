@@ -1,0 +1,30 @@
+.box1 {
+  border: solid 1px gray;
+  margin: 20px;
+  padding: 10px;
+}
+span {
+  margin: 10px;
+}
+
+select {
+  margin: 20px;
+}
+
+.searchBar {
+  margin-right: 20px;
+}
+
+table {
+  margin: 20px;
+  border: none;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  width: 150px;
+  padding: 10px;
+  border: 1px solid gray;
+  text-align: center;
+}
