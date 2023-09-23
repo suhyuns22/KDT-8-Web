@@ -1,17 +1,31 @@
-import ClassComponent from "./ClassComponent";
-import ClassProps from "./ClassProps";
-import ColorChange from "./ColorChange";
-import Counter from "./Counter";
-import Event from "./Event";
-import EventClass from "./EventClass";
-import FunctionComponent from "./FunctionComponent";
-import Search from "./Search";
-import ShowMessage from "./ShowMessage";
-import BestSeller from "./bestSeller";
-import Hide from "./hide";
-import BugComponenet from "./paractice";
-import Myname from "./test1";
-import Hello from "./test2";
+// import ClassComponent from "./ClassComponent";
+// import ClassProps from "./ClassProps";
+// import ColorChange from "./ColorChange";
+// import Counter from "./Counter";
+// import Event from "./Event";
+// import EventClass from "./EventClass";
+// import FunctionComponent from "./FunctionComponent";
+// import FuncState3 from "./RefPractice";
+// import Search2 from "./RefPractice";
+// import RefSample from "./RefSample";
+// import RefSample2 from "./RefSample2";
+// import Search from "./Search";
+// import ShowMessage from "./ShowMessage";
+// import ParentComponent from "./UseCallback";
+// import UseRef1 from "./UseRef1";
+// import UseRef2 from "./UseRef2";
+// import BestSeller from "./bestSeller";
+// import Hide from "./hide";
+// import UseMemo from "./hookMemo";
+// import BugComponenet from "./paractice";
+// import Myname from "./test1";
+// import Hello from "./test2";
+import LoginPage from "./LoginPage";
+import ParentComponent from "./UseCallback";
+import UseCallback2 from "./UseCallback2";
+import UseReducer from "./UseReducer";
+import UseRefBoard from "./useRef3";
+// import UseStatePrac3 from "./useRef3";
 
 function App() {
   return (
@@ -43,7 +57,19 @@ function App() {
       {/* <Counter></Counter> */}
       {/* <ColorChange></ColorChange> */}
       {/* <Hide></Hide> */}
-      <Search></Search>
+      {/* <Search></Search> */}
+      {/* <RefSample></RefSample>
+      <RefSample2></RefSample2> */}
+      {/* <FuncState3></FuncState3> */}
+      {/* <UseRef1></UseRef1>
+      <UseRef2></UseRef2> */}
+      {/* <UseStatePrac3></UseStatePrac3> */}
+      {/* <UseMemo></UseMemo> */}
+      {/* <UseRefBoard /> */}
+      {/* <ParentComponent></ParentComponent>
+      <UseCallback2></UseCallback2> */}
+      {/* <UseReducer></UseReducer> */}
+      <LoginPage></LoginPage>
     </>
   );
 }
