@@ -20,11 +20,17 @@
 // import BugComponenet from "./paractice";
 // import Myname from "./test1";
 // import Hello from "./test2";
+import AddList from "./AddList";
 import LoginPage from "./LoginPage";
+import SassComponent from "./SassComponent";
+import StyledComponent from "./StyledComponent";
 import ParentComponent from "./UseCallback";
 import UseCallback2 from "./UseCallback2";
 import UseReducer from "./UseReducer";
+import CirclePractice from "./animation";
+import BugComponenet from "./paractice";
 import UseRefBoard from "./useRef3";
+
 // import UseStatePrac3 from "./useRef3";
 
 function App() {
@@ -69,7 +75,12 @@ function App() {
       {/* <ParentComponent></ParentComponent>
       <UseCallback2></UseCallback2> */}
       {/* <UseReducer></UseReducer> */}
-      <LoginPage></LoginPage>
+      {/* <LoginPage></LoginPage> */}
+      {/* <SassComponent></SassComponent>
+      <BugComponenet></BugComponenet> */}
+      {/* <CirclePractice></CirclePractice> */}
+      {/* <StyledComponent></StyledComponent> */}
+      <AddList></AddList>
     </>
   );
 }
