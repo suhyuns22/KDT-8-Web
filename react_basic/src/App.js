@@ -20,16 +20,19 @@
 // import BugComponenet from "./paractice";
 // import Myname from "./test1";
 // import Hello from "./test2";
-import AddList from "./AddList";
-import LoginPage from "./LoginPage";
-import SassComponent from "./SassComponent";
-import StyledComponent from "./StyledComponent";
-import ParentComponent from "./UseCallback";
-import UseCallback2 from "./UseCallback2";
-import UseReducer from "./UseReducer";
-import CirclePractice from "./animation";
-import BugComponenet from "./paractice";
-import UseRefBoard from "./useRef3";
+import { Outlet } from "react-router-dom";
+import Header from "./12Router/Header";
+// import AddList from "./AddList";
+// import LoginPage from "./LoginPage";
+// import Router from "./Router";
+// import SassComponent from "./SassComponent";
+// import StyledComponent from "./StyledComponent";
+// import ParentComponent from "./UseCallback";
+// import UseCallback2 from "./UseCallback2";
+// import UseReducer from "./UseReducer";
+// import CirclePractice from "./animation";
+// import BugComponenet from "./paractice";
+// import UseRefBoard from "./useRef3";
 
 // import UseStatePrac3 from "./useRef3";
 
@@ -80,7 +83,10 @@ function App() {
       <BugComponenet></BugComponenet> */}
       {/* <CirclePractice></CirclePractice> */}
       {/* <StyledComponent></StyledComponent> */}
-      <AddList></AddList>
+      {/* <AddList></AddList> */}
+      <Header />
+      <Outlet />
+      {/* <Router></Router> */}
     </>
   );
 }
