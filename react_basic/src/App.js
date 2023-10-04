@@ -20,8 +20,19 @@
 // import BugComponenet from "./paractice";
 // import Myname from "./test1";
 // import Hello from "./test2";
-import { Outlet } from "react-router-dom";
-import Header from "./12Router/Header";
+// import { Form, Outlet } from "react-router-dom";
+// import Header from "./12Router/Header";
+
+// import MyContext from "./14Context/store/lang-context";
+// import { useState } from "react";
+// import LanguageSlector from "./14Context/LangSelector";
+// import ThemeChange from "./14Practice/LangSelector";
+// import ThemeProvider from "./14Practice/LangProvider";
+// import ChangeTheme from "./14Practice/LangSelector";
+
+import { PracProvider } from "./14Practice/Store/lang-context";
+import PracSelector from "./14Practice/LangSelector";
+
 // import AddList from "./AddList";
 // import LoginPage from "./LoginPage";
 // import Router from "./Router";
@@ -37,6 +48,7 @@ import Header from "./12Router/Header";
 // import UseStatePrac3 from "./useRef3";
 
 function App() {
+  // const [language, setLanguage] = useState("ko");
   return (
     <>
       {/* <h1>컴포넌트</h1> */}
@@ -84,9 +96,18 @@ function App() {
       {/* <CirclePractice></CirclePractice> */}
       {/* <StyledComponent></StyledComponent> */}
       {/* <AddList></AddList> */}
-      <Header />
-      <Outlet />
+      {/* <Header />
+      <Outlet /> */}
       {/* <Router></Router> */}
+      {/* <MyContext.Provider>
+        <LanguageSlector />
+      </MyContext.Provider> */}
+      {/* <LanguageProvider>
+        <LanguageSlector />
+      </LanguageProvider> */}
+      <PracProvider>
+        <PracSelector />
+      </PracProvider>
     </>
   );
 }
