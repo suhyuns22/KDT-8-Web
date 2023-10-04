@@ -23,15 +23,16 @@
 // import { Form, Outlet } from "react-router-dom";
 // import Header from "./12Router/Header";
 
+import LanguageSelector from "./14Practice/LangSelector";
+import { ThemeProvider } from "./14Practice/Store/theme-context";
+import ThemeSelector from "./14Practice/ThemeSelector";
+
 // import MyContext from "./14Context/store/lang-context";
 // import { useState } from "react";
 // import LanguageSlector from "./14Context/LangSelector";
 // import ThemeChange from "./14Practice/LangSelector";
 // import ThemeProvider from "./14Practice/LangProvider";
 // import ChangeTheme from "./14Practice/LangSelector";
-
-import { PracProvider } from "./14Practice/Store/lang-context";
-import PracSelector from "./14Practice/LangSelector";
 
 // import AddList from "./AddList";
 // import LoginPage from "./LoginPage";
@@ -105,9 +106,10 @@ function App() {
       {/* <LanguageProvider>
         <LanguageSlector />
       </LanguageProvider> */}
-      <PracProvider>
-        <PracSelector />
-      </PracProvider>
+      <ThemeProvider>
+        <LanguageSelector />
+        <ThemeSelector />
+      </ThemeProvider>
     </>
   );
 }

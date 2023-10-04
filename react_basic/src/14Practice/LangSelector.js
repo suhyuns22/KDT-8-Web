@@ -1,39 +1,16 @@
-import { useContext, useState } from "react";
-import PracContext from "./Store/lang-context";
+import { useContext } from "react";
+import ThemeConText from "./Store/theme-context";
 
-export default function PracSelector() {
-  const value = useContext(PracContext);
-  const [bgcolor, setBgcolor] = useState("white");
-  const [color, setColor] = useState("white");
-
-  const handleLang = () => {
-    if (value.language === "Korean") {
-      value.setLanguage("English");
-    } else {
-      value.setLanguage("Korean");
-    }
-  };
-
-  const handleMode = () => {
-    if (value.mode === "Light") {
-      value.setMode("Dark");
-      setBgcolor("black");
-      setColor("white");
-    } else {
-      value.setMode("Light");
-      setBgcolor("white");
-      setColor("black");
-    }
-  };
+export default function LanguageSelector() {
+  const { language, setLanguage } = useContext(ThemeConText);
 
   return (
-    <div style={{ backgroundColor: bgcolor, color: color }}>
-      <h2>현재 설정</h2>
-      <span>언어: {value.language} </span>
-      <button onClick={handleLang}>언어 변경</button>
-      <br />
-      <span>화면모드: {value.mode} </span>
-      <button onClick={handleMode}>모드 변경</button>
+    <div>
+      <h2>현재 선택된 언어 : {language}</h2>
+      <select value={language} onChange={(e) => setLanguage(e.target.value)}>
+        <option value="ko">한국어</option>
+        <option value="en">영어</option>
+      </select>
     </div>
   );
 }
