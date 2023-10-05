@@ -23,7 +23,10 @@
 // import { Form, Outlet } from "react-router-dom";
 // import Header from "./12Router/Header";
 
+import Cart from "./14Practice/Cart";
 import LanguageSelector from "./14Practice/LangSelector";
+import ProductList from "./14Practice/ProductList";
+import { CartProvider } from "./14Practice/Store/cart-context";
 import { ThemeProvider } from "./14Practice/Store/theme-context";
 import ThemeSelector from "./14Practice/ThemeSelector";
 
@@ -106,10 +109,14 @@ function App() {
       {/* <LanguageProvider>
         <LanguageSlector />
       </LanguageProvider> */}
-      <ThemeProvider>
+      {/* <ThemeProvider>
         <LanguageSelector />
         <ThemeSelector />
-      </ThemeProvider>
+      </ThemeProvider> */}
+      <CartProvider>
+        <ProductList />
+        <Cart />
+      </CartProvider>
     </>
   );
 }
