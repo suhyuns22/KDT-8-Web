@@ -1,3 +1,19 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import APP from "./App";
+import { Provider } from "react-redux";
+import store from "./store";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <APP />
+    </Provider>
+  </React.StrictMode>
+);
+
+/*
 // 실습1
 import { createStore } from "redux";
 
@@ -131,3 +147,4 @@ form.addEventListener("submit", (event) => {
 //     <App />
 //   </React.StrictMode>
 // );
+*/
