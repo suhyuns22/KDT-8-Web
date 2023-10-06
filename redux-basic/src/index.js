@@ -1,32 +1,59 @@
 // 실습1
-function addTask(taskText) {
-  let todoList = document.getElementById("todo-list");
-  let newTask = document.createElement("li");
-  let taskSpan = document.createElement("span");
-  let delButton = document.createElement("button");
+import { createStore } from "redux";
 
-  taskSpan.textContent = taskText;
-  delButton.textContent = "DEL";
-  delButton.className = "delete";
+const input = document.querySelector("input");
+const form = document.querySelector("form");
+const ul = document.querySelector("ul");
 
-  delButton.addEventListener("click", function () {
-    todoList.removeChild(newTask);
-  });
+const ADD_TODO = "ADD_TODO";
+const DELETE_TODO = "DELETE_TODO";
 
-  newTask.appendChild(taskSpan);
-  newTask.appendChild(delButton);
-  todoList.appendChild(newTask);
-}
-
-document.getElementById("add").addEventListener("click", function () {
-  let taskInput = document.getElementById("task");
-  let taskText = taskInput.value;
-  if (taskText.trim() !== "") {
-    addTask(taskText);
-    taskInput.value = "";
+//reducer
+const reducer = (state = [], action) => {
+  console.log(action);
+  switch (action.type) {
+    case ADD_TODO:
+      const newTodo = { text: action.text, id: Date.now() };
+      return [...state, newTodo];
+    case DELETE_TODO:
+      return state.filter((el) => el.id !== action.id);
+    default:
+      return state;
   }
+};
+//store
+const store = createStore(reducer);
+
+const removeTodo = (event) => {
+  event.preventDefault();
+  store.dispatch({ type: DELETE_TODO, id: Number(event.target.parentNode.id) });
+};
+
+//subscribe()는 스토어의 데이터가 변경될 때 ( ) 안에 있는 함수가 실행
+// store.subscribe(() => console.log(store.getState()));
+store.subscribe(() => {
+  const todos = store.getState();
+  ul.innerHTML = "";
+  todos.map((value) => {
+    // console.log(value);
+    const li = document.createElement("li");
+    const btn = document.createElement("button");
+    btn.innerText = "DEL";
+    btn.addEventListener("click", removeTodo); //삭제 이벤트
+    li.innerText = value.text;
+    li.id = value.id;
+    li.appendChild(btn);
+    ul.appendChild(li);
+  });
 });
 
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  store.dispatch({ type: ADD_TODO, text: input.value });
+  input.value = "";
+});
+
+//강의
 //리덕스를 이용한 +1,-1,코드
 // import { createStore } from "redux";
 
